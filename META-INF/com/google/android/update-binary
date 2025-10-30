@@ -1,0 +1,77 @@
+#!/sbin/sh
+
+#################
+# Initialization
+#################
+
+umask 022
+
+# echo before loading util_functions
+ui_print() { echo "$1"; }
+
+require_new_magisk() {
+  ui_print "*******************************"
+  ui_print " Please install Magisk v20.4+! "
+  ui_print "*******************************"
+  exit 1
+}
+
+#########################
+# Load util_functions.sh
+#########################
+
+OUTFD=$2
+ZIPFILE=$3
+
+mount /data 2>/dev/null
+
+[ -f /data/adb/magisk/util_functions.sh ] || require_new_magisk
+. /data/adb/magisk/util_functions.sh
+[ $MAGISK_VER_CODE -lt 20400 ] && require_new_magisk
+
+  ui_print "Credits To"
+  sleep 0.5
+  ui_print "Thank You : @Laynsb @MiAzami"
+  sleep 0.5
+  ui_print "For Mediatek G99/MT6789"
+  sleep 0.5
+  
+  ui_print ""
+  ui_print "INFORMASI TENTANG SMARPHONE										"
+  sleep 0.2
+  ui_print ""
+  ui_print " build release   [🕗]•$(getprop ro.build.date)			"
+  sleep 0.2
+  ui_print ""
+  ui_print " device model    [📱]•$(getprop ro.product.model)		"
+  sleep 0.2
+  ui_print ""
+  ui_print " codename model  [📲]•$(getprop ro.build.product)		"
+  sleep 0.2
+  ui_print ""
+  ui_print " device brand    [🆔]•$(getprop ro.product.brand)		"
+  sleep 0.2
+  ui_print ""
+  ui_print " SDK build       [💽]•$(getprop ro.build.version.sdk)	"
+  sleep 0.2
+  ui_print ""
+  ui_print " kernel type     [📀]•$(cat /proc/version) "
+  sleep 0.2
+  ui_print ""
+  ui_print "_____________________________________	"
+  ui_print "WAITING THERMAL MOD WORKING"
+  ui_print "-"
+  sleep 0.5
+  ui_print "--"
+  sleep 0.5
+  ui_print "---"
+  sleep 0.5
+  ui_print "----"
+  sleep 0.5
+  ui_print"-----"
+  sleep 0.5
+  ui_print "------------------------------------"
+  ui_print    "WORKING NOW"
+  ui_print "REBOOT THE DEVICE"
+install_module
+exit 0
